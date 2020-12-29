@@ -39,7 +39,7 @@ def fix():
 
 
 	print("[+] magic \t\t%s" % w_open.decode().replace('\n',' '))
-	print("[+] checksum \t\t%s" % hex(int.from_bytes(w_checksum, byteorder='little')))
+	print("[+] checksum \t\t%s" % hex(int.from_bytes(w_checksum, byteorder='little')).replace('0x',''))
 	print("[+] signature \t\t%s" % ba.b2a_hex(w_signature).decode())
 	print("[+] filesize \t\t%u bytes" % int.from_bytes(w_filesize, byteorder='little'))
 
