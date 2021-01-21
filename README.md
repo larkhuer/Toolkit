@@ -7,6 +7,6 @@
 
 + hook_classes.js
 
-	hook all method of specify class, or query like "com.android*!*"
+	__hook all method of specify class, or query like "com.android*!*"__
 	
 	Usage: frida -U -f [package] -l hook_classes.js --no-pause
