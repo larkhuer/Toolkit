@@ -14,10 +14,10 @@ function hook_class(cls_name)
     //hook all method of the class
     methods.forEach(function(method){
 		
-	    var method_name = method.getName(); //get method name
-	    var overloads = cls[method_name].overloads;
+	var method_name = method.getName(); //get method name
+	var overloads = cls[method_name].overloads;
 
-        overloads.forEach(function(ol){
+	overloads.forEach(function(ol){
         	ol.implementation = function() {
         		console.log('[+] ' + cls_name + ' > ' + method_name + '('+arguments.length+')');
         		return this[method_name].apply(this, arguments);
