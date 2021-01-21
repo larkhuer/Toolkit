@@ -31,7 +31,6 @@ function hook_classes(q)
 	var all = Java.enumerateMethods(q);
 
 	var cls_list = all[0]["classes"];
-	for (var i=0; i < cls_list.length; i++)
 	cls_list.forEach(function(cls){
 		hook_class(cls["name"]);
 	});
