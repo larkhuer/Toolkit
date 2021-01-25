@@ -1,29 +1,36 @@
 Java.perform(function(){
-    
-    var q = "com.game*!*"; 
-    hook_classes(q);
-
+	
+	var q = "com.game*!*"; 
+	hook_classes(q);
 });
 
 //hook specify class
 function hook_class(cls_name)
 {
-    var cls = Java.use(cls_name);
-    var methods = cls.class.getDeclaredMethods();
+	var cls = Java.use(cls_name);
+	var methods = cls.class.getDeclaredMethods();
 
-    //hook all method of the class
-    methods.forEach(function(method){
+	//hook all method of the class
+	methods.forEach(function(method){
 		
-	var method_name = method.getName(); //get method name
-	var overloads = cls[method_name].overloads;
+		var method_name = method.getName(); //get method name
+		var overloads = cls[method_name].overloads;
 
-	overloads.forEach(function(ol){
-        	ol.implementation = function() {
-        		console.log('[+] ' + cls_name + ' > ' + method_name + '('+arguments.length+')');
-        		return this[method_name].apply(this, arguments);
-        	}
-        });
-    });
+		var ilog = "";
+        	overloads.forEach(function(ol){
+        		ol.implementation = function() {
+        			ilog = '[+] ' + cls_name + ' > ' + method_name + '('+arguments.length+')';
+        			//for(var i=0; i < arguments.length; i++)
+        			//{
+        			//	ilog += "\n\t--- " + arguments[i];
+        			//}
+        			var ret = this[method_name].apply(this, arguments);
+        			// ilog += "\n\tRET " + ret);
+        			console.log(ilog);
+        			return ret;
+        		}
+		});
+	});
 }
 // hook all classes matched query
 function hook_classes(q)
